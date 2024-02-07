@@ -5,6 +5,7 @@ import (
 	baseHandler "go-platform/internal/web/base"
 	"go-platform/pkg/router"
 	"go-platform/pkg/server"
+	"go-platform/pkg/template"
 )
 
 type Web struct {
@@ -13,8 +14,10 @@ type Web struct {
 }
 
 func New() *Web {
-	authHandler := authHandler.New()
-	baseHandler := baseHandler.New()
+	prefixPath := "web/template"
+	template := template.New(prefixPath)
+	authHandler := authHandler.New(template)
+	baseHandler := baseHandler.New(template)
 	return &Web{
 		authHandler,
 		baseHandler,

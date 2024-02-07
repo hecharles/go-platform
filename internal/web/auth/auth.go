@@ -2,14 +2,16 @@ package auth
 
 import (
 	"go-platform/pkg/router"
+	"go-platform/pkg/template"
 	"net/http"
 )
 
 type AuthHandler struct {
+	template *template.Template
 }
 
-func New() *AuthHandler {
-	return &AuthHandler{}
+func New(template *template.Template) *AuthHandler {
+	return &AuthHandler{template}
 }
 
 func (h *AuthHandler) Handle(router *router.Router) {

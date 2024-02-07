@@ -2,14 +2,16 @@ package base
 
 import (
 	"go-platform/pkg/router"
+	"go-platform/pkg/template"
 	"net/http"
 )
 
 type BaseHandler struct {
+	template *template.Template
 }
 
-func New() *BaseHandler {
-	return &BaseHandler{}
+func New(template *template.Template) *BaseHandler {
+	return &BaseHandler{template}
 }
 
 func (h *BaseHandler) Handle(router *router.Router) {
@@ -22,9 +24,16 @@ func (h *BaseHandler) route(r *router.Router) {
 }
 
 func (h *BaseHandler) index(w http.ResponseWriter, r *http.Request) error {
-	w.WriteHeader(http.StatusOK)
-	w.Header().Set("Content-Type", "plain/text")
-	w.Write([]byte("Hello, World!"))
+
+	data := struct {
+		Title   string
+		Content string
+	}{
+		Title:   "Hello, World!",
+		Content: "Welcome to the Go Platform!",
+	}
+
+	h.template.Render("index.html", w, data)
 
 	return nil
 }

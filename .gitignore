@@ -12,3 +12,4 @@ bower_components
 go.work
 .DS_Store
 bin/
+dist/
