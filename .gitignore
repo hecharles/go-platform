@@ -1,0 +1,12 @@
+#.gitignore
+node_modules/
+bower_components
+.idea/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
