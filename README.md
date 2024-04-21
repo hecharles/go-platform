@@ -1,1 +1,1 @@
-ref: https://github.com/golang-standards/project-layout
+golang folder structure
